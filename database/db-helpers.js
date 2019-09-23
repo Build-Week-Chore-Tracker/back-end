@@ -1,22 +1,30 @@
 const db = require('./config/db-config.js')
 
 module.exports = {
-    registerUser,
     getUsers,
-    getUser
+    getUser,
+    getUserById,
+    registerUser,
 };
 
+//<------GET HELPERS----------------
 function getUsers () {
     return db('User')
 }
 
-function registerUser (user) {
+function getUser (user) {
     return db('User')
-    .insert(user)
+        .where(user)
+        .first()
 }
 
-function getUser (user) {
+function getUserById (user) {
     return db('User')
     .where(user)
     .first()
+}
+//<------POST HELPERS----------------
+function registerUser (user) {
+    return db('User')
+    .insert(user)
 }

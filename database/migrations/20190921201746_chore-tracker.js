@@ -5,73 +5,54 @@ exports.up = function(knex) {
         tbl.increments(); //Id's auto increment
 
         tbl
-            .string('username', 100)
+            .string('name')
+            .notNullable()
+        tbl
+            .string('username')
             .unique()
             .notNullable()
         tbl
-            .string('email_address', 100)
-            .unique()
-            // .notNullable()
-        tbl
-            .string('password', 100)
-            .notNullable()
-        tbl
-            .boolean('child', false)
-    })
-    .createTable('Chore_template', tbl => {
-        tbl.increments(); //Id's auto increment
-
-        tbl
-            .string('name', 100)
-            .notNullable()
+            .string('email')
             .unique()
         tbl
-            .string('description', 500)
-        tbl
-            .string('period', 500)
-        tbl
-            .boolean('picture_evidence')
-        tbl
-            .integer('points')
-        tbl
-            .boolean('custom')
-        tbl
-            .string('notes', 500)
+            .string('password')
+            .notNullable()
     })
     .createTable('Chore', tbl => {
         tbl.increments(); //Id's auto increment
 
         tbl
-            .timestamp('created_date', true)
+            .string('name')
+            .notNullable()
         tbl
-            .timestamp('due_date', true)
+            .string('how_long')
+            .notNullable()
         tbl
-            .timestamp('done_date', true)
+            .integer('points')
+            .notNullable()
         tbl
-            .timestamp('approved_date', true)
+            .string('due_date')
+            .notNullable()
         tbl
-            .string('assigned_comment', 150)
+            .string('notes')
     })
-    .createTable('Notes', tbl => {
+    .createTable('User_child', tbl => {
         tbl.increments(); //Id's auto increment
 
         tbl
-            .boolean('seen')
-    })
-    .createTable('Settings', tbl => {
-        tbl.increments(); //Id's auto increment
-
+            .string('name')
         tbl
-            .string('picture')
-            // .integer('week_start_day')
+            .string('username')
+        tbl
+            .integer('age')
+            .notNullable()
+            
     })
 };
 
 exports.down = function(knex) {
   return knex.schema
-    .dropTableIfExists('Settings')
-    .dropTableIfExists('Notes')
     .dropTableIfExists('Chore')
-    .dropTableIfExists('Chore_template')
-    .dropTableIfExists('user')
+    .dropTableIfExists('User_Child')
+    .dropTableIfExists('User')
 };
