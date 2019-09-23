@@ -16,6 +16,6 @@ module.exports = (req, res, next) => {
         }
       })
     } else {
-      res.status(401).json({ error: 'Unathorized' });
+      res.status(401).json({ error: 'Unathorized, you need to login or create an account' });
     }
 };

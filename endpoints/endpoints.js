@@ -51,7 +51,9 @@ router.post('/chores', (req, res) => {
 
     Users.addChore(chore)
         .then(chore => {
-            res.status(200).json(chore)
+            res.status(201).json({
+                message: "Your chore was created sucessfully"
+            })
         })
         .catch(err => {
             console.log(err)

@@ -7,12 +7,13 @@ const { generateToken }  = require('./generateToken.js')//import function to gen
 //<-------------REGISTER GET REQUESTS--------------------------
 router.post('/register',  (req, res) => {
 
-    const { username, password } = req.body; //fetch data from body
+    const { email, name, username, password } = req.body; //fetch data from body
 
     const hash = bcrypt.hashSync(password, 12) //Creates password hash
 
-    Users.registerUser({ username, password: hash }) //set hash to password
+    Users.registerUser({ name, email, username, password: hash }) //set hash to password
         .then(user => {
+            console.log(user)
             res.status(201).json({
                 message: 'You have been sucessfully registered!'
               })
