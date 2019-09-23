@@ -31,5 +31,33 @@ router.get('/:id',  (req, res) => {
         
 })
 
+router.get('/chores', (req, res) => { 
+
+    Users.getChores()
+        .then(chores => {
+            console.log(chores)
+            res.status(200).json(chores)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json(err)
+        })
+        
+})
+//<-------------POST REQUESTS--------------------------
+router.post('/chores', (req, res) => { 
+
+    const chore = req.body;
+
+    Users.addChore(chore)
+        .then(chore => {
+            res.status(200).json(chore)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json(err)
+        })
+        
+})
 
 module.exports = router;

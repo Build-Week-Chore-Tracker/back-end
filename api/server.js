@@ -10,7 +10,7 @@ const authenticate = require('../endpoints/auth/auth-middleware.js')
 
 //import endpoints
 const endpoints = require('../endpoints/endpoints.js');
-server.use('/api/auth/users', authenticate, endpoints)
+server.use('/api/auth/family', authenticate, endpoints)
 //import endpoints
 const AuthEndpoints = require('../endpoints/auth/auth-endpoints.js');
 server.use('/api/auth', AuthEndpoints)
