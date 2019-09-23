@@ -1,21 +1,22 @@
 
 exports.up = function(knex) {
   return knex.schema
-    .createTable('user', tbl => {
+    .createTable('User', tbl => {
         tbl.increments(); //Id's auto increment
 
         tbl
-            .string('name', 100)
+            .string('username', 100)
+            .unique()
             .notNullable()
         tbl
             .string('email_address', 100)
             .unique()
-            .notNullable()
+            // .notNullable()
         tbl
             .string('password', 100)
             .notNullable()
         tbl
-            .boolean('child', 100)
+            .boolean('child', false)
     })
     .createTable('Chore_template', tbl => {
         tbl.increments(); //Id's auto increment

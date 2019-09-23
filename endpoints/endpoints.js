@@ -3,15 +3,17 @@ const Users = require('../database/db-helpers.js') //import endpoints helpers/mo
 
 
 //<-------------GET REQUESTS--------------------------
-router.get('/dummy-endpoint',  (req, res) => {
+router.get('/users-list',  (req, res) => {
 
     Users.getUsers()
         .then(users => {
             res.status(200).json(users)
         })
         .catch(err => {
-            res.status(500).json(err.response)
+            console.log(err)
+            res.status(500).json(err)
         })
+        
 })
 
 
