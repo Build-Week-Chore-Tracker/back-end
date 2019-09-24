@@ -23,7 +23,6 @@ router.post('/register',  (req, res) => {
             res.status(500).json({error: err})
         })
 })
-
 //<-------------REGISTER GET REQUESTS--------------------------
 router.post('/login',  (req, res) => {
 

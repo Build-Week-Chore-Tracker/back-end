@@ -18,6 +18,7 @@ exports.up = function(knex) {
             .string('password')
             .notNullable()
     })
+
     .createTable('Chore', tbl => {
         tbl.increments(); //Id's auto increment
 
@@ -36,6 +37,7 @@ exports.up = function(knex) {
         tbl
             .string('notes')
     })
+
     .createTable('User_child', tbl => {
         tbl.increments(); //Id's auto increment
 
@@ -46,7 +48,17 @@ exports.up = function(knex) {
         tbl
             .integer('age')
             .notNullable()
-            
+
+        //FOREIGN KEYS 
+        tbl
+            .integer('User_id')
+            .unsigned()
+            .references('id')
+            .inTable('User')
+            .onDelete('CASCADE')
+            .onUpdate('CASCADE')
+        tbl
+            .boolean('child')
     })
 };
 

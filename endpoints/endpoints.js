@@ -1,8 +1,6 @@
 const router = require('express').Router(); //import express router
 const Users = require('../database/db-helpers.js') //import endpoints helpers/models
 
-
-
 //<-------------GET REQUESTS--------------------------
 router.get('/', (req, res) => { 
 
@@ -13,9 +11,9 @@ router.get('/', (req, res) => {
         .catch(err => {
             console.log(err)
             res.status(500).json(err)
-        })
-        
+        })    
 })
+
 router.get('/:id',  (req, res) => {
 
     const { id } = req.params; //fetch id
@@ -44,6 +42,18 @@ router.get('/chores', (req, res) => {
         })
         
 })
+router.get('/child', (req, res) => { 
+
+    Users.getChild()
+        .then(children => {
+            res.status(200).json(children)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json(err)
+        })
+        
+})
 //<-------------POST REQUESTS--------------------------
 router.post('/chores', (req, res) => { 
 
@@ -61,5 +71,23 @@ router.post('/chores', (req, res) => {
         })
         
 })
+
+router.post('/child',  (req, res) => {
+
+    const { name, username, age  } = req.body; //fetch data from body
+
+    Users.addChild({ name, username, age }) //set hash to password
+        .then(user => {
+            res.status(201).json({
+                message: 'Your child has been sucessfully added to the family'
+              })
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({error: err})
+        })
+})
+
+//DUMMY ENDPOINTS
 
 module.exports = router;
