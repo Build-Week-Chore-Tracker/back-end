@@ -46,6 +46,33 @@ exports.up = function(knex) {
         tbl
             .integer('age')
             .notNullable()
+        tbl
+            .boolean('child')
+
+        //FOREIGN KEYS 
+        tbl
+            .integer('User_id')
+            .unsigned()
+            .references('id')
+            .inTable('User')
+            .onDelete('CASCADE')
+            .onUpdate('CASCADE')
+    })
+    .createTable('Family', tbl => {
+
+        tbl
+            .string('name')
+        tbl
+            .string('username')
+            
+        tbl
+            .string('email')
+            .unique()
+        tbl
+            .integer('age')
+            .notNullable()
+        tbl
+            .boolean('child')
 
         //FOREIGN KEYS 
         tbl
@@ -56,7 +83,14 @@ exports.up = function(knex) {
             .onDelete('CASCADE')
             .onUpdate('CASCADE')
         tbl
-            .boolean('child')
+            .integer('User_child_id')
+            .unsigned()
+            .references('id')
+            .inTable('User_child')
+            .onDelete('CASCADE')
+            .onUpdate('CASCADE')
+
+        tbl.primary('User_id', 'User_child_id')
     })
 };
 

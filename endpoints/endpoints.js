@@ -13,6 +13,19 @@ router.get('/', (req, res) => {
             res.status(500).json(err)
         })
 })
+router.get('/family/:id', (req, res) => { 
+
+    const { id } = req.params;
+
+    Users.getFamily({id})
+        .then(family => {
+            res.status(200).json(family)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json(err)
+        })
+})
 
 router.get('/chores', (req, res) => { 
 

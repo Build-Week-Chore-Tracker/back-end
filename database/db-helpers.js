@@ -4,6 +4,7 @@ module.exports = {
     getUsers,
     getUser,
     getUserById,
+    getFamily,
     getChildren,
     registerUser,
     addChore,
@@ -17,12 +18,12 @@ function getUsers () {
     .select('User.id', 'User.name', 'User.username', 'User.email')
 }
 
-// function getUsers (id) {
-//     return db('User as u')
-//         .join('User_child as uc', 'u.id', 'uc.User_id')
-//         .where({ User_id: id })
-//         .select('u.id', 'u.name', 'u.username', 'u.email', 'uc.name', 'uc.username', 'uc.age', 'uc.child')
-// }
+function getFamily (id) {
+    return db('User as u')
+        .join('User_child as uc', 'u.id', 'uc.User_id')
+        .join('Family as u', 'u.id', 'uc.User_id')
+        .where({ User_id: id })
+}
 
 function getUser (user) {
     return db('User')
