@@ -105,6 +105,21 @@ router.put('/chores/:id', (req, res) => {
         })
         
 })
+
+router.put('/children/:id', (req, res) => { 
+
+    const { id } = req.params;
+    const update = req.body;
+
+    Users.updateChildren(id, update)
+        .then(updated => {
+            res.status(200).json(updated)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json(err)
+        })
+})
 //<-------------DELETE REQUESTS--------------------------
 
 

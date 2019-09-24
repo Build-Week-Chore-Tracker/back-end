@@ -11,6 +11,7 @@ module.exports = {
     addChore,
     addChild,
     updateChore,
+    updateChildren,
 };
 
 //<------GET HELPERS----------------
@@ -63,6 +64,11 @@ function addChild (child) {
 //<------PUT HELPERS----------------
 function updateChore (id, changes) {
     return db('Chore')
+        .where({ id })
+        .update(changes)
+}
+function updateChildren (id, changes) {
+    return db('User_child')
         .where({ id })
         .update(changes)
 }
