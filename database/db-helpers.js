@@ -12,6 +12,7 @@ module.exports = {
     addChild,
     updateChore,
     updateChildren,
+    removeChore,
 };
 
 //<------GET HELPERS----------------
@@ -27,7 +28,7 @@ function getUsers () {
 //         .where({ User_id: id })
 // }
 
-function getUser (user) {
+function getUser (user) { //<---- Used to grab authenticated user at login
     return db('User')
         .where(user)
         .first()
@@ -45,6 +46,13 @@ function getChores () {
 }
 function getChildren () {
     return db('User_child')
+}
+
+function removeChore (id) { //<----- Used to delete chore
+    return db('Chore')
+        .where(id)
+        .first()
+        .del()
 }
 //<------POST HELPERS----------------
 function registerUser (user) {

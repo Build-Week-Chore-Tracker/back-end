@@ -121,6 +121,15 @@ router.put('/children/:id', (req, res) => {
         })
 })
 //<-------------DELETE REQUESTS--------------------------
+router.delete('/chores/:id', (req, res) => {
+    
+    const { id } = req.params;
 
+    Users.removeChore({ id })
+        .then(chore => {
+            res.status(204).end()
+        })
+        .catch(err => { console.log(err)})
+})
 
 module.exports = router;
