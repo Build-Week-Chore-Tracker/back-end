@@ -11,22 +11,7 @@ router.get('/', (req, res) => {
         .catch(err => {
             console.log(err)
             res.status(500).json(err)
-        })    
-})
-
-router.get('/:id',  (req, res) => {
-
-    const { id } = req.params; //fetch id
-
-    Users.getUserById({ id })
-        .then(user => {
-            res.status(200).json(user)
         })
-        .catch(err => {
-            console.log(err)
-            res.status(500).json(err)
-        })
-        
 })
 
 router.get('/chores', (req, res) => { 
@@ -42,9 +27,10 @@ router.get('/chores', (req, res) => {
         })
         
 })
-router.get('/child', (req, res) => { 
 
-    Users.getChild()
+router.get('/children', (req, res) => { 
+
+    Users.getChildren()
         .then(children => {
             res.status(200).json(children)
         })
@@ -52,7 +38,6 @@ router.get('/child', (req, res) => {
             console.log(err)
             res.status(500).json(err)
         })
-        
 })
 //<-------------POST REQUESTS--------------------------
 router.post('/chores', (req, res) => { 
@@ -71,8 +56,8 @@ router.post('/chores', (req, res) => {
         })
         
 })
-
-router.post('/child',  (req, res) => {
+//adds a child
+router.post('/',  (req, res) => {
 
     const { name, username, age  } = req.body; //fetch data from body
 

@@ -13,10 +13,8 @@ exports.up = function(knex) {
             .notNullable()
         tbl
             .string('email')
-            .notNullable()
         tbl
             .string('password')
-            .notNullable()
     })
 
     .createTable('Chore', tbl => {
