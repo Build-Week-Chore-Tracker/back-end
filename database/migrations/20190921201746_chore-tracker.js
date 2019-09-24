@@ -33,6 +33,8 @@ exports.up = function(knex) {
             .string('due_date')
             .notNullable()
         tbl
+            .string('done_date')
+        tbl
             .string('notes')
     })
 
@@ -44,10 +46,13 @@ exports.up = function(knex) {
         tbl
             .string('username')
         tbl
+            .string('password')
+        tbl
             .integer('age')
-            .notNullable()
         tbl
             .boolean('child')
+        tbl
+            .integer('points')
 
         //FOREIGN KEYS 
         tbl
@@ -92,11 +97,31 @@ exports.up = function(knex) {
 
         tbl.primary('User_id', 'User_child_id')
     })
+    .createTable('User_child_chore', tbl => {
+
+        //FOREIGN KEYS
+        tbl
+            .integer('User_child_id')
+            .unsigned()
+            .references('id')
+            .inTable('User_child')
+            .onDelete('CASCADE')
+            .onUpdate('CASCADE')
+        tbl
+            .integer('User')
+            .unsigned()
+            .references('id')
+            .inTable('User')
+            .onDelete('CASCADE')
+            .onUpdate('CASCADE')
+    })
 };
 
 exports.down = function(knex) {
   return knex.schema
-    .dropTableIfExists('Chore')
+    .dropTableIfExists('User_child_chore')
+    .dropTableIfExists('Family')
     .dropTableIfExists('User_Child')
+    .dropTableIfExists('Chore')
     .dropTableIfExists('User')
 };

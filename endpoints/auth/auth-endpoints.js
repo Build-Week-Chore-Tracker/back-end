@@ -15,7 +15,8 @@ router.post('/register',  (req, res) => {
         .then(user => {
             console.log(user)
             res.status(201).json({
-                message: 'You have been sucessfully registered!'
+                message: 'You have been sucessfully registered!',
+                id: user
               })
         })
         .catch(err => {
@@ -34,7 +35,8 @@ router.post('/login',  (req, res) => {
                 const token = generateToken(user);
                 res.status(200).json({
                     message: `Welcome ${user.username}!`,
-                    token: token
+                    token: token,
+                    user: user.id
                   })
             } else {
                 res.status(404).json({

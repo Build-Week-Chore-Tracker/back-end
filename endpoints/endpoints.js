@@ -13,19 +13,19 @@ router.get('/', (req, res) => {
             res.status(500).json(err)
         })
 })
-router.get('/family/:id', (req, res) => { 
+// router.get('/family/:id', (req, res) => { 
 
-    const { id } = req.params;
+//     const { id } = req.params;
 
-    Users.getFamily({id})
-        .then(family => {
-            res.status(200).json(family)
-        })
-        .catch(err => {
-            console.log(err)
-            res.status(500).json(err)
-        })
-})
+//     Users.getFamily(id)
+//         .then(family => {
+//             res.status(200).json(family)
+//         })
+//         .catch(err => {
+//             console.log(err)
+//             res.status(500).json(err)
+//         })
+// })
 
 router.get('/chores', (req, res) => { 
 
@@ -60,7 +60,8 @@ router.post('/chores', (req, res) => {
     Users.addChore(chore)
         .then(chore => {
             res.status(201).json({
-                message: "Your chore was created sucessfully"
+                message: "Your chore was created sucessfully",
+                chore_id: chore
             })
         })
         .catch(err => {
@@ -69,15 +70,16 @@ router.post('/chores', (req, res) => {
         })
         
 })
-//adds a child
+// //adds a child
 router.post('/',  (req, res) => {
 
     const { name, username, age  } = req.body; //fetch data from body
 
     Users.addChild({ name, username, age }) //set hash to password
-        .then(user => {
+        .then(id => {
             res.status(201).json({
-                message: 'Your child has been sucessfully added to the family'
+                message: 'Your child has been sucessfully added to the family',
+                id: id
               })
         })
         .catch(err => {
@@ -86,6 +88,24 @@ router.post('/',  (req, res) => {
         })
 })
 
-//DUMMY ENDPOINTS
+//<-------------PUT REQUESTS--------------------------
+router.put('/chores/:id', (req, res) => { 
+
+    const { id } = req.params;
+    const update = req.body;
+
+    Users.updateChore(id, update)
+        .then(updated => {
+            // console.log(chores)
+            res.status(200).json(updated)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json(err)
+        })
+        
+})
+//<-------------DELETE REQUESTS--------------------------
+
 
 module.exports = router;
