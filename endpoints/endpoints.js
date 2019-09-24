@@ -2,9 +2,11 @@ const router = require('express').Router(); //import express router
 const Users = require('../database/db-helpers.js') //import endpoints helpers/models
 
 //<-------------GET REQUESTS--------------------------
-router.get('/', (req, res) => { 
+router.get('/:id', (req, res) => { 
 
-    Users.getUsers()
+    const { id } = req.params;
+
+    Users.getFamily({ id })
         .then(users => {
             res.status(200).json(users)
         })
@@ -13,19 +15,6 @@ router.get('/', (req, res) => {
             res.status(500).json(err)
         })
 })
-// router.get('/family/:id', (req, res) => { 
-
-//     const { id } = req.params;
-
-//     Users.getFamily(id)
-//         .then(family => {
-//             res.status(200).json(family)
-//         })
-//         .catch(err => {
-//             console.log(err)
-//             res.status(500).json(err)
-//         })
-// })
 
 router.get('/chores', (req, res) => { 
 
@@ -41,9 +30,11 @@ router.get('/chores', (req, res) => {
         
 })
 
-router.get('/children', (req, res) => { 
+router.get('/:id/children', (req, res) => { 
 
-    Users.getChildren()
+    const { id } = req.params;
+
+    Users.getChildren({ id })
         .then(children => {
             res.status(200).json(children)
         })
@@ -71,15 +62,16 @@ router.post('/chores', (req, res) => {
         
 })
 // //adds a child
-router.post('/',  (req, res) => {
+router.post('/register-child',  (req, res) => {
 
-    const { name, username, age  } = req.body; //fetch data from body
+    const { name, username, age, points, child  } = req.body; //fetch data from body
 
-    Users.addChild({ name, username, age }) //set hash to password
+    Users.addChild({ name, username, age, points, child }) //set hash to password
         .then(id => {
             res.status(201).json({
                 message: 'Your child has been sucessfully added to the family',
-                id: id
+                id: id,
+                User_id: req.body.User_id
               })
         })
         .catch(err => {

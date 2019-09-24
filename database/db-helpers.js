@@ -1,10 +1,10 @@
 const db = require('./config/db-config.js')
 
 module.exports = {
-    getUsers,
+    // getUsers,
     getUser,
     getUserById,
-    // getFamily,
+    getFamily,
     getChores,
     getChildren,
     registerUser,
@@ -17,16 +17,17 @@ module.exports = {
 };
 
 //<------GET HELPERS----------------
-function getUsers () {
+function getFamily (id) {
     return db('User')
+    .where(id)
     .select('User.id', 'User.name', 'User.username', 'User.email')
 }
 
 // function getFamily (id) {
 //     return db('User as u')
 //         .join('User_child as uc', 'u.id', 'uc.User_id')
-//         .join('Family as u', 'u.id', 'uc.User_id')
-//         .where({ User_id: id })
+//         .where({ 'uc.User_id': id })
+//         .select('u.name')
 // }
 
 function getUser (user) { //<---- Used to grab authenticated user at login
@@ -45,8 +46,9 @@ function getUserById (user) {
 function getChores () {
     return db('Chore')
 }
-function getChildren () {
+function getChildren (id) {
     return db('User_child')
+        .where(id)
 }
 
 function removeChore (id) { //<----- Used to delete chore
