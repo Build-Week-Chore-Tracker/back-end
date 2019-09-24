@@ -132,4 +132,15 @@ router.delete('/chores/:id', (req, res) => {
         .catch(err => { console.log(err)})
 })
 
+router.delete('/children/:id', (req, res) => {
+    
+    const { id } = req.params;
+
+    Users.removeChild({ id })
+        .then(child => {
+            res.status(204).end()
+        })
+        .catch(err => { console.log(err)})
+})
+
 module.exports = router;

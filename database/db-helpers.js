@@ -13,6 +13,7 @@ module.exports = {
     updateChore,
     updateChildren,
     removeChore,
+    removeChild,
 };
 
 //<------GET HELPERS----------------
@@ -50,6 +51,12 @@ function getChildren () {
 
 function removeChore (id) { //<----- Used to delete chore
     return db('Chore')
+        .where(id)
+        .first()
+        .del()
+}
+function removeChild (id) { //<----- Used to delete child
+    return db('User_child')
         .where(id)
         .first()
         .del()
