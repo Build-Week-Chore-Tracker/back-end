@@ -5,11 +5,24 @@ const Users = require('../database/db-helpers.js') //import endpoints helpers/mo
 router.get('/:id', (req, res) => { 
 
     const { id } = req.params;
+    let family = [];
 
     Users.getFamily(id)
-        .then(users => {
-            res.status(200).json(users)
-        })
+        .then(users => 
+            Users.getUser({ id })
+                .then(user => { family.push(user)
+                    users.forEach(e => {
+                        family.push(e)
+                    })
+                    console.log(family)
+                    res.status(200).json({
+                        family
+                    })
+                })
+                .catch(err => {
+                    res.status(500).json(err)
+                })
+            )
         .catch(err => {
             console.log(err)
             res.status(500).json(err)

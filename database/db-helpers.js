@@ -34,6 +34,7 @@ function getUser (user) { //<---- Used to grab authenticated user at login
     return db('User')
         .where(user)
         .first()
+        .select('User.id', 'User.name', 'User.username', 'User.email')
 }
 
 function getUserById (user) {
