@@ -26,7 +26,7 @@ module.exports = {
 function getFamily (id) {
     return db('User as u')
         .join('User_child as uc', 'u.id', 'uc.User_id')
-        .select('u.id', 'u.name', 'u.username', 'u.email')
+        .select('uc.id', 'uc.user_id as parent_id', 'uc.name', 'uc.username', 'uc.age', 'uc.points', 'uc.child')
         .where({ 'User_id': id })
 }
 

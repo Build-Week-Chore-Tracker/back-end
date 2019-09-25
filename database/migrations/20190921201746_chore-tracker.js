@@ -60,6 +60,7 @@ exports.up = function(knex) {
             .notNullable()
 
         tbl.string('done_date')
+        
 
         tbl.string('notes')
 
