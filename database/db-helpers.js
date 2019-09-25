@@ -70,12 +70,12 @@ function registerUser (user) {
 
 function addChore (chore) {
     return db('Chore')
-    .insert(chore)
+    .insert(chore, 'id')
 }
 
 function addChild (child) {
-    return db('User_Child')
-        .insert(child)
+    return db('User_child')
+        .insert(child, 'id')
 }
 //<------PUT HELPERS----------------
 function updateChore (id, changes) {

@@ -15,7 +15,7 @@ router.post('/register',  (req, res) => {
         .then(user => {
             res.status(201).json({
                 message: 'You have been sucessfully registered!',
-                id: user
+                id: user[0]
               })
         })
         .catch(err => {
