@@ -1,7 +1,6 @@
 const db = require('./config/db-config.js')
 
 module.exports = {
-    // getUsers,
     getUser,
     getLoggedUser,
     getFamily,
@@ -15,13 +14,6 @@ module.exports = {
     removeChore,
     removeChild,
 };
-
-//<------GET HELPERS----------------
-// function getFamily (id) {
-//     return db('User')
-//     .where(id)
-//     .select('User.id', 'User.name', 'User.username', 'User.email')
-// }
 
 function getFamily (id) {
     return db('User as u')

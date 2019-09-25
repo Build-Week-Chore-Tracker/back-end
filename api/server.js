@@ -1,13 +1,14 @@
 const express = require('express') //import express dependency
 const server = express(); //assign express to your server
+const cors = require('cors'); //IMPORT CORS NEXT TIME
+const helmet = require('helmet');
+
+server.use(helmet());
+server.use(cors());
 server.use(express.json()) //teach express to parse data from body to JSON
 
 //import authentication middleware
 const authenticate = require('../endpoints/auth/auth-middleware.js')
-
-//import dummy endpoint
-// const dummyEndpoint = require('../endpoints/dummy-endpoint.js');
-// server.use('/api', authenticate, dummyEndpoint)
 
 //sanity check
 server.get('/', (req, res) => {res.send('Server is up and running!')})
