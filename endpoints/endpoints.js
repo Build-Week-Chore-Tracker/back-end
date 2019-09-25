@@ -34,15 +34,15 @@ router.get('/:id', (req, res) => {
         })
 })
 
-router.get('/chores', (req, res) => { 
+router.get('/:id/chores', (req, res) => { 
 
-    Users.getChores()
+    const { id } = req.params;
+
+    Users.getChores({ id })
         .then(chores => {
-            console.log(chores)
             res.status(200).json(chores)
         })
         .catch(err => {
-            console.log(err)
             res.status(500).json(err)
         })
         
