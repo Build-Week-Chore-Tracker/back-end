@@ -3,7 +3,7 @@ const db = require('./config/db-config.js')
 module.exports = {
     // getUsers,
     getUser,
-    getUserById,
+    getLoggedUser,
     getFamily,
     getChores,
     getChildren,
@@ -34,14 +34,12 @@ function getUser (user) { //<---- Used to grab authenticated user at login
     return db('User')
         .where(user)
         .first()
-        .select('User.id', 'User.name', 'User.username', 'User.email')
 }
 
-function getUserById (user) {
+function getLoggedUser (user) {
     return db('User')
     .where(user)
     .first()
-    .select('User.id', 'User.name', 'User.username', 'User.email')
 }
 
 function getChores () {

@@ -13,7 +13,6 @@ router.post('/register',  (req, res) => {
 
     Users.registerUser({ name, email, username, password: hash }) //set hash to password
         .then(user => {
-            console.log(user)
             res.status(201).json({
                 message: 'You have been sucessfully registered!',
                 id: user
@@ -28,19 +27,20 @@ router.post('/register',  (req, res) => {
 router.post('/login',  (req, res) => {
 
     const { username, password } = req.body;
-
+    
     Users.getUser({ username })
-        .then(user => {
+    .then(user => {
+        console.log(user)
             if(user && bcrypt.compareSync(password, user.password)){
                 const token = generateToken(user);
                 res.status(200).json({
-                    message: `Welcome ${user.username}!`,
+                    message: `Welcome ${user.name}!`,
                     token: token,
                     user: user.id
                   })
             } else {
                 res.status(404).json({
-                    message: `User ${user.username} not found`
+                    message: `User ${user.name} not found`
                 })
             }
         })

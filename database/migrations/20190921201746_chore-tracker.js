@@ -5,7 +5,6 @@ exports.up = function(knex) {
         tbl.increments(); //Id's auto increment
 
         tbl.string('name')
-            .notNullable()
 
         tbl.string('username')
             .unique()

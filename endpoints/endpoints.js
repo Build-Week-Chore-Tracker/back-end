@@ -14,7 +14,6 @@ router.get('/:id', (req, res) => {
                     users.forEach(e => {
                         family.push(e)
                     })
-                    console.log(family)
                     res.status(200).json({
                         family
                     })
