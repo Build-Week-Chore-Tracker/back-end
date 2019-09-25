@@ -1,6 +1,6 @@
 const knex = require('knex'); //import knex dependency
 const knexFile = require('../../knexfile.js') //import knexFile connected to db
-const knexConfig = knexFile.production; //create knexConfig and set it to development*
+const knexConfig = process.env.DB_ENV || knexFile.development; //create knexConfig and set it to development*
 // const knexConfig = knexFile.development; //create knexConfig and set it to development*
 
 //export your knex configuration
