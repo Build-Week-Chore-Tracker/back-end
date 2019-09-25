@@ -5,7 +5,7 @@ Live Heroku Url - https://chore-tracker-app.herokuapp.com
 
 ## AUTH Endpoints
 
-### POST /auth/register
+### POST /api/auth/register
 
     -input:
         -name                               -string
@@ -20,7 +20,7 @@ Live Heroku Url - https://chore-tracker-app.herokuapp.com
   
   -Will register the parent user
 
-### POST /auth/login
+### POST /api/auth/login
 
     -input:
         -username           -Required     -string
