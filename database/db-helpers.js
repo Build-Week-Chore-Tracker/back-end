@@ -17,18 +17,18 @@ module.exports = {
 };
 
 //<------GET HELPERS----------------
-function getFamily (id) {
-    return db('User')
-    .where(id)
-    .select('User.id', 'User.name', 'User.username', 'User.email')
-}
-
 // function getFamily (id) {
-//     return db('User as u')
-//         .join('User_child as uc', 'u.id', 'uc.User_id')
-//         .where({ 'uc.User_id': id })
-//         .select('u.name')
+//     return db('User')
+//     .where(id)
+//     .select('User.id', 'User.name', 'User.username', 'User.email')
 // }
+
+function getFamily (id) {
+    return db('User as u')
+        .join('User_child as uc', 'u.id', 'uc.User_id')
+        .select('uc.id','uc.User_id as parent_id','uc.name', 'uc.username', 'uc.age', 'uc.points')
+        .where({ 'User_id': id })
+}
 
 function getUser (user) { //<---- Used to grab authenticated user at login
     return db('User')

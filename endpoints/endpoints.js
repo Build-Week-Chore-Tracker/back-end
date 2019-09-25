@@ -6,7 +6,7 @@ router.get('/:id', (req, res) => {
 
     const { id } = req.params;
 
-    Users.getFamily({ id })
+    Users.getFamily(id)
         .then(users => {
             res.status(200).json(users)
         })
@@ -64,14 +64,13 @@ router.post('/chores', (req, res) => {
 // //adds a child
 router.post('/register-child',  (req, res) => {
 
-    const { name, username, age, points, child  } = req.body; //fetch data from body
+    const { name, username, age, password, points, child, User_id } = req.body; //fetch data from body
 
-    Users.addChild({ name, username, age, points, child }) //set hash to password
+    Users.addChild({ name, username, age, password, points, child, User_id }) //set hash to password
         .then(id => {
             res.status(201).json({
                 message: 'Your child has been sucessfully added to the family',
-                id: id,
-                User_id: req.body.User_id
+                id: id
               })
         })
         .catch(err => {
