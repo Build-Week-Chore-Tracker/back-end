@@ -1,6 +1,8 @@
 # Chore-Tracker
 ---
 
+Live Heroku Url - https://chore-tracker-app.herokuapp.com 
+
 ## AUTH Endpoints
 
 ### POST /auth/register
