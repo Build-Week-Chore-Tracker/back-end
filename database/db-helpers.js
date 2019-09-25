@@ -1,7 +1,6 @@
 const db = require('./config/db-config.js')
 
 module.exports = {
-    // getUsers,
     getUser,
     getLoggedUser,
     getFamily,
