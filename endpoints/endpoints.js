@@ -10,7 +10,13 @@ router.get('/:id', (req, res) => {
     Users.getFamily(id)
         .then(users => 
             Users.getUser({ id })
-                .then(user => { family.push(user)
+                .then(user => { 
+                    console.log(user)
+                    family.push({
+                        id: user.id, 
+                        user: user.name, 
+                        username: user.username, email: 
+                        user.email})
                     users.forEach(e => {
                         family.push(e)
                     })
