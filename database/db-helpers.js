@@ -65,7 +65,7 @@ function removeChild (id) { //<----- Used to delete child
 //<------POST HELPERS----------------
 function registerUser (user) {
     return db('User')
-    .insert(user)
+    .insert(user, 'id')
 }
 
 function addChore (chore) {
