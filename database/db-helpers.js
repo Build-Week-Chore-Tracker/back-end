@@ -22,13 +22,13 @@ function getFamily (id) {
         .where({ 'User_id': id })
 }
 
-function getUser (user) { //<---- Used to grab authenticated user at login
+function getUser (user) { 
     return db('User')
-        .where(user)
-        .first()
+        // .where(user)
+        // .first()
 }
 
-function getLoggedUser (user) {
+function getLoggedUser (user) { //<---- Used to grab authenticated user at login
     return db('User')
     .where(user)
     .first()
