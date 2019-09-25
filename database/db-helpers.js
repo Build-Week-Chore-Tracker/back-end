@@ -16,13 +16,6 @@ module.exports = {
     removeChild,
 };
 
-//<------GET HELPERS----------------
-// function getFamily (id) {
-//     return db('User')
-//     .where(id)
-//     .select('User.id', 'User.name', 'User.username', 'User.email')
-// }
-
 function getFamily (id) {
     return db('User as u')
         .join('User_child as uc', 'u.id', 'uc.User_id')
